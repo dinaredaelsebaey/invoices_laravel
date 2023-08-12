@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -23,6 +24,8 @@ Auth::routes();
 
 
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
+Route::post('/sections', [SectionController::class, 'store'])->name('sections.store');
 Route::get('/{page}', [AdminController::class, 'index']);
 
 
