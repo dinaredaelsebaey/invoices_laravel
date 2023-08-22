@@ -57,16 +57,17 @@
                                         <tbody>
                                             <tr>
                                                 @foreach ($sections as $section) 
+                                                <tr id="{{$section->id}}"> 
                                                 <td>{{$section->id}}</td>
                                                 <td>{{$section->section_name}}</td>
                                                 <td>{{$section->description}}</td>
                                                 <td>
-                                                <td>
-                                                    <a class="btn btn-primary">تفاصيل
+                                                    <a href="#" class="btn btn-primary">تفاصيل</a>
                                                         {{-- <a class="modal-effect btn btn-outline-success " data-effect="effect-scale" data-toggle="modal"  href="#modaldemo12" type="submit">تعديل</a> --}}
-                                                        <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
-                                                    <a class="btn btn-danger">حزف</a>    
+                                                    <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
+                                                    <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>    
                                                 </td>
+                                            </tr>
                                                 @endforeach
                                             </td>
                                                 

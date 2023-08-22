@@ -34,8 +34,6 @@
     @endforeach
 </div>
 @endif
-    
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper pb-4">
     <!-- Content Header (Page header) -->
