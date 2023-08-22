@@ -35,6 +35,7 @@ Route::get('/section/delete/{id}', [SectionController::class, 'delete'])->name('
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('products.show');
 
 
 Route::get('/{page}', [AdminController::class, 'index']);
