@@ -62,7 +62,7 @@
                                                 <td>{{$section->section_name}}</td>
                                                 <td>{{$section->description}}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-primary">تفاصيل</a>
+                                                    <a href="{{route('sections.show',$section->id)}}" class="btn btn-primary" type="button">تفاصيل</a>
                                                         {{-- <a class="modal-effect btn btn-outline-success " data-effect="effect-scale" data-toggle="modal"  href="#modaldemo12" type="submit">تعديل</a> --}}
                                                     <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
                                                     <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>    

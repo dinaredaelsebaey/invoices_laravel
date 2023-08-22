@@ -56,9 +56,10 @@ class SectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Section $section)
+    public function show(Section $section,$id)
     {
-        //
+        $section = Section::findOrFail($id);
+        return view('sections.show',['section'=>$section]);
     }
 
     /**

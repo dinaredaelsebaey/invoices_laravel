@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
 Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
+Route::get('/section/show/{id}', [SectionController::class, 'show'])->name('sections.show');
 Route::get('/section/edit/{id}', [SectionController::class, 'edit'])->name('sections.edit');
 Route::post('/section/update/{id}', [SectionController::class, 'update'])->name('sections.update');
 Route::get('/section/delete/{id}', [SectionController::class, 'delete'])->name('sections.delete');
