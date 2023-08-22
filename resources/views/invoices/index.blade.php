@@ -34,10 +34,8 @@
                             <div class="card mg-b-20">
                                 <div class="card-header pb-0">
                                     <div class="d-flex justify-content-between">
-                                        <h4 class="card-title mg-b-0">Bordered Table</h4>
-                                        <i class="mdi mdi-dots-horizontal text-gray"></i>
+                                        <a class="modal-effect btn btn-outline-primary " data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافه فاتوره</a>
                                     </div>
-                                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -84,7 +82,34 @@
                         </div>
                         <!--/div-->
     
-                        <!--div-->
+                                            {{-- add invoices --}}
+                    <div class="modal" id="modaldemo8">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content modal-content-demo">
+                                <div class="modal-header">
+                                    <h6 class="modal-title">اضافه قسم </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            @csrf
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1" class="form-label">رقم الفاتورة</label>
+                                            <input type="number" class="form-control" id="invoice_number" name="invoice_number">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1" class="form-label">الوصف</label>
+                                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn ripple btn-success" type="submit">تاكيد</button>
+                                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">اغلاق</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                       
 				</div>
 				<!-- row closed -->

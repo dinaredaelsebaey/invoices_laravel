@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-الاقسام
+المنتجات
 @endsection
 @section('css')
 <!-- Internal Data table css -->
@@ -16,7 +16,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الاعدادات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الاقسام</span>
+							<h4 class="content-title mb-0 my-auto">الاعدادات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ المنتجات</span>
 						</div>
 					</div>
 					
@@ -39,7 +39,7 @@
                         <div class="card mg-b-20">
                             <div class="card-header pb-0">
                                 <div class="d-flex justify-content-between">
-                                    <a class="modal-effect btn btn-outline-primary " data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافه قسم</a>
+                                    <a class="modal-effect btn btn-outline-primary " data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافه منتج</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,23 +48,24 @@
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">#</th>
+                                                <th class="border-bottom-0">اسم المنتج</th>
                                                 <th class="border-bottom-0">اسم القسم</th>
-                                                <th class="border-bottom-0">الوصف</th>
+                                                <th class="border-bottom-0">ملاحظات</th>
                                                 <th class="border-bottom-0">عمليات</th>                                        
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                @foreach ($sections as $section) 
-                                                <tr id="{{$section->id}}"> 
-                                                <td>{{$section->id}}</td>
-                                                <td>{{$section->section_name}}</td>
-                                                <td>{{$section->description}}</td>
+                                                @foreach ($products as $product) 
+                                                <tr id="{{$product->id}}"> 
+                                                <td>{{$product->id}}</td>
+                                                <td>{{$product->product_name}}</td>
+                                                <td>{{$product->section->section_name}}</td>
+                                                <td>{{$product->notes}}</td>
                                                 <td>
-                                                    <a href="{{route('sections.show',$section->id)}}" class="btn btn-primary" type="button">تفاصيل</a>
-                                                        {{-- <a class="modal-effect btn btn-outline-success " data-effect="effect-scale" data-toggle="modal"  href="#modaldemo12" type="submit">تعديل</a> --}}
-                                                    <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
-                                                    <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>    
+                                                    <a href="{{route('products.show',$products->id)}}" class="btn btn-primary" type="button">تفاصيل</a>
+                                                    {{-- <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
+                                                    <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>     --}}
                                                 </td>
                                             </tr>
                                                 @endforeach
@@ -84,19 +85,28 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
                                 <div class="modal-header">
-                                    <h6 class="modal-title">اضافه قسم </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                    <h6 class="modal-title">اضافه منتج </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 
                                     <div class="modal-body">
-                                        <form action="{{route('sections.store')}}" method="post">
+                                        <form action="{{route('products.store')}}" method="post">
                                             @csrf
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1" class="form-label">اسم القسم</label>
-                                            <input type="text" class="form-control" id="section_name" name="section_name">
+                                            <label for="exampleFormControlInput1" class="form-label">اسم المنتج</label>
+                                            <input type="text" class="form-control" id="product_name" name="product_name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1" class="form-label">الوصف</label>
-                                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                            <label for="section">القسم</label>
+                                            <select required class=" form-control" name="section_id" id="section_id">
+                                                    @foreach ($sections as $section)
+                                                        <option value={{ $section->id}}>{{ $section->section_name }}</option>
+                                                    @endforeach
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1" class="form-label">ملاحظات</label>
+                                            <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
