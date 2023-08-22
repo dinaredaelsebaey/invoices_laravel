@@ -39,7 +39,7 @@
                         <div class="card mg-b-20">
                             <div class="card-header pb-0">
                                 <div class="d-flex justify-content-between">
-                                    <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافه قسم</a>
+                                    <a class="modal-effect btn btn-outline-primary " data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافه قسم</a>
 
                                 </div>
                             </div>
@@ -56,12 +56,18 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>dfgh</td>
+                                                @foreach ($sections as $section) 
+                                                <td>{{$section->id}}</td>
+                                                <td>{{$section->section_name}}</td>
+                                                <td>{{$section->description}}</td>
                                                 <td>
-                                                <button class="btn btn-secondary">تعديل</button>
-                                                <button class="btn btn-danger">حزف</button>
+                                                <td>
+                                                    <a class="btn btn-primary">تفاصيل
+                                                        {{-- <a class="modal-effect btn btn-outline-success " data-effect="effect-scale" data-toggle="modal"  href="#modaldemo12" type="submit">تعديل</a> --}}
+                                                        <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
+                                                    <a class="btn btn-danger">حزف</a>    
+                                                </td>
+                                                @endforeach
                                             </td>
                                                 
                                             </tr>
@@ -73,6 +79,7 @@
                         </div>
                     </div>
                     <!--/div-->
+                    {{-- add section --}}
                     <div class="modal" id="modaldemo8">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
@@ -100,6 +107,33 @@
                             </div>
                         </div>
                     </div>
+                    {{-- edit section --}}
+                    {{-- <div class="modal" id="modaldemo12">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content modal-content-demo">
+                                <div class="modal-header">
+                                    <h6 class="modal-title">تعديل قسم </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{route('sections.update',$section->id)}}" method="Post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlInput1" class="form-label">اسم القسم</label>
+                                                                        <input type="text" class="form-control" id="section_name" name="section_name" value="{{old('section_name') ?? $section->section_name}}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlTextarea1" class="form-label">الوصف</label>
+                                                                        <textarea class="form-control" id="description" name="description" rows="3">{{old('section_description') ?? $section->section_description}}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn ripple btn-primary" data-dismiss="modal" type="button">تعديل</a>
+                                                                    <a class="btn ripple btn-secondary" data-dismiss="modal" type="button">اغلاق</a>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                    </div> --}}
 				</div>
 				<!-- row closed -->
 			</div>

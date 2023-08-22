@@ -12,7 +12,9 @@ class SectionController extends Controller
      */
     public function index()
     {
-        return view('sections.sections');
+        $sections = Section::all();
+        return view('sections.index',
+        ['sections'=>$sections]);
     }
 
     /**
@@ -32,7 +34,12 @@ class SectionController extends Controller
             'section_name'=>'string|unique:sections',
             'description'=>'string|min:20|nullable',
             'created_by'=>'string|nullable',
-         ]);
+         ],[
+            'section_name.string' => 'من فضلك ادخل قسم مكون من حروف ',
+            'section_name.unique' => 'لا يمكنك ادخال القسم مرتين من فضلك ادخل قسم اخر',
+            'description.string' => 'من فضلك ادخل وصف مكون من حروف',
+            'description.min' => 'من  فضلك ادخل وصف ادخل وصف لا يقل عن 20 حروف ',]);
+            
             $section_name=$request->section_name;
             $description=$request->description;
             $created_by=Auth::user()->name;
@@ -57,17 +64,34 @@ class SectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Section $section)
+    public function edit($id)
     {
-        //
+        $section = Section::findOrFail($id);
+        return view('sections.edit',['section'=>$section]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'section_name'=>'string',
+            'description'=>'string|min:20|nullable',
+         ],[
+            'section_name.string' => 'من فضلك ادخل قسم مكون من حروف ',
+            'description.string' => 'من فضلك ادخل وصف مكون من حروف',
+            'description.min' => 'من  فضلك ادخل وصف ادخل وصف لا يقل عن 20 حروف ',]);
+            
+            $section_name=$request->section_name;
+            $description=$request->description;
+            
+            Section::findOrFail($id)->update([
+                'section_name'=>$section_name,
+                'description'=>$description,
+
+            ]);
+            return redirect(route('sections.index',$id));
     }
 
     /**
