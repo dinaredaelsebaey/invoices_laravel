@@ -36,6 +36,10 @@ Route::get('/section/delete/{id}', [SectionController::class, 'delete'])->name('
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('products.update');
+
+
 
 
 Route::get('/{page}', [AdminController::class, 'index']);

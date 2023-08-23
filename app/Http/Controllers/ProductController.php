@@ -34,20 +34,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $section_id = Section::where('section_name',$request->section_name)->first()->id;
         $request->validate([
             'product_name'=>'string|required|unique:products',
             'notes'=>'string|min:20|nullable',
         ]);
 
         $product_name=$request->product_name;
-        $section_name=$request->section_name;
         $section_id =$request->section_id;
         $notes=$request->notes;
         
         Product::create([
             'product_name'=>$product_name,
-            'section_name'=>$section_name,
             'notes'=>$notes,
             'section_id'=>$section_id,
             
@@ -73,17 +70,38 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product,$id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $sections = Section::all();
+        return view('products.edit',[
+            'product' => $product,
+            'sections' => $sections,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product,$id)
     {
-        //
+
+        $request->validate([
+            'product_name'=>'string|required',
+            'notes'=>'string|min:20|nullable',
+            'section_id' => 'required', 
+        ]);
+        
+        $product_name=$request->product_name;
+        $notes=$request->notes;
+        $section_id = $request->section_id;
+        
+        Product::findOrFail($id)->update([
+            'product_name'=>$product_name,
+            'notes'=>$notes,
+            'section_id'=>$section_id,   
+         ]);
+         return redirect(route('products.index'));   
     }
 
     /**

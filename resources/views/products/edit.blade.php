@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-منتج {{$product->product_name}}
+منتج  {{$product ->product_name}}
 @endsection
 @section('css')
 <!-- Internal Data table css -->
@@ -43,26 +43,45 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <!-- Default box -->
-        <div class="card card-solid">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-sm-6 d-flex  align-items-center">
-                        <div>
-                            <p class="my-3">{{$product->id}}</p>
-                            <p class="my-3">{{$product->product_name}}</p>
-                            <p class="my-3">{{$product->section->section_name}}</p> 
-                            <p class="my-3">{{$product->notes}}</p>
-                            <a href="{{route('products.index')}}" class="btn btn-secondary" type="button">Back</a>
-                                               
+        <form action="{{ route('products.update',$product->id)}}" method="post" enctype="multipart/form-data"
+            class="w-75 m-auto">
+            @csrf
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                       
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="form-label">اسم المنتج</label>
+                                <input type="text" class="form-control" id="product_name" name="product_name" value="{{old('product_name') ?? $product->product_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="section">القسم</label>
+                                <select required class="form-control" name="section_id" id="section_id">
+                                    @foreach ($sections as $section)
+                                        <option value="{{ $section->id }}" {{ $section->id == $product->section_id ? 'selected' : '' }}>
+                                            {{ $section->section_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="form-label">ملاحظات</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3">{{old('notes') ?? $product->notes}}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
+            <div class="row">
+                <div class="col-12">
+                    {{-- <a href="sections.index" class="btn btn-secondary" type="submit">update</a> --}}
+                    <a href="#" class="btn btn-secondary">Cancel</a>
+                    <input type="submit" value="update" class="btn btn-warning float-right">
+                </div>
+            </div>
+        </form>
     </section>
 </div>
 				</div>

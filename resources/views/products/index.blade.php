@@ -64,8 +64,8 @@
                                                 <td>{{$product->notes}}</td>
                                                 <td>
                                                     <a href="{{route('products.show',$product->id)}}" class="btn btn-primary" type="button">تفاصيل</a>
-                                                    {{-- <a href="{{route('sections.edit',$section->id)}}"  class="btn btn-success"type="button">تعديل</a>
-                                                    <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>     --}}
+                                                    <a href="{{route('products.edit',$product->id)}}"  class="btn btn-success"type="button">تعديل</a>
+                                                    {{-- <a href="{{route('sections.delete',$section->id)}}" class="btn btn-danger" type="button">حزف</a>     --}} 
                                                 </td>
                                             </tr>
                                                 @endforeach
