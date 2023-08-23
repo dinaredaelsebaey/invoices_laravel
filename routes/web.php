@@ -38,6 +38,8 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+
 
 
 
