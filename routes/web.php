@@ -25,6 +25,8 @@ Auth::routes();
 
 
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
 
 Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
 Route::post('/sections/store', [SectionController::class, 'store'])->name('sections.store');
