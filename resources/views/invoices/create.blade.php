@@ -159,7 +159,6 @@
         // Event listener for section select element
         $('#section_id').change(function() {
             var sectionId = $(this).val(); // Get the selected section ID
-    
             // Make an AJAX request to fetch the products for the selected section
             $.ajax({
                 url: '/section/' + sectionId,
@@ -167,11 +166,10 @@
                 success: function(response) {
                     // Clear previous options
                     $('#product_id').empty();
-    
                     // Parse the JSON response
                     var products = JSON.parse(response);
-    
-                    // Add new options based on the response
+                    // Add new options based on the response from InvoicesController
+                    //productName present response of getProduct function
                     $.each(products, function(id, productName) {
                         $('#product_id').append('<option value="' + id + '">' + productName + '</option>');
                     });
@@ -189,6 +187,9 @@
 
         var total_amount_commission = amount_commission - discount;
 
+        if(typeof amount_commission === 'undefined' || !amount_commission){
+            alart('يرجي ادخال مبلغ العمولة')
+        }else{
         var commission_tax_rate = total_amount_commission * tax_rate / 100;
         var total_commission_tax_rate = commission_tax_rate + total_amount_commission;
 
@@ -198,5 +199,6 @@
         document.getElementById("tax_value").value = sum_tax_value;
         document.getElementById("total").value = sum_total;
     }
+}
 </script>
 @endsection
