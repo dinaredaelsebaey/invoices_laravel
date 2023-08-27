@@ -11,9 +11,7 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    protected $guard=[
-        
-    ];
+    protected $guarded=[];
     public function section(){
         
         return $this->belongsTo(Section::class);

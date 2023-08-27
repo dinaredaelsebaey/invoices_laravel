@@ -71,15 +71,14 @@
                         <div class="form-group">
                             <label for="section">القسم</label>
                             <select required class=" form-control" name="section_id" id="section_id">
-                                    @foreach ($sections as $section)
-                                        <option value={{ $section->id}}>{{ $section->section_name }}</option>
-                                    @endforeach   
+                                @foreach ($sections as $section)
+                                    <option value={{ $section->id}}>{{ $section->section_name }}</option>
+                                @endforeach   
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="product">المنتج</label>
                             <select required class="form-control" name="product_id" id="product_id">
-                                <!-- Product options will be dynamically populated here -->
                             </select>
                         </div>
                         <div class="form-group">
