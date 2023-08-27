@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="invoice_number">رقم الفاتورة</label>
-                            <input type="number" id="invoice_number" class="form-control" value="" name="invoice_number">
+                            <input type="text" id="invoice_number" class="form-control" value="" name="invoice_number">
                         </div>
 
                         <div class="form-group">
@@ -153,7 +153,18 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the invoice date input element
+        var invoiceDateInput = document.getElementById("invoice_date");
 
+        // Get the current date
+        var currentDate = new Date().toISOString().slice(0, 10);
+
+        // Set the current date as the default value
+        invoiceDateInput.value = currentDate;
+    });
+</script>
 <script>
     $(document).ready(function() {
         // Event listener for section select element
