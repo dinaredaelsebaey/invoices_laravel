@@ -46,34 +46,45 @@
                                                     <th class="border-bottom-0">رقم الفاتورة</th>
                                                     <th class="border-bottom-0">تاريخ الفاتورة</th>
                                                     <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                                    <th class="border-bottom-0">المنتج</th>
                                                     <th class="border-bottom-0">القسم</th>
+                                                    <th class="border-bottom-0">المنتج</th>
+                                                    <th class="border-bottom-0">العمولة</th>
                                                     <th class="border-bottom-0">الخصم</th>
                                                     <th class="border-bottom-0">نسبة الضريبه</th>
                                                     <th class="border-bottom-0">قيمة الضريبه</th>
-                                                    <th class="border-bottom-0">الجمالي</th>
+                                                    <th class="border-bottom-0">الاجمالي</th>
                                                     <th class="border-bottom-0">الحالة</th>
-                                                    <th class="border-bottom-0">ملاحظات</th>
-                                                    
-                                                    
+                                                    <th class="border-bottom-0">ملاحظات</th> 
+                                            
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                @foreach ($invoices as $invoice) 
+                                                <tr id="{{$invoice->id}}"> 
+                                                    <td>{{$invoice->id}}</td>
+                                                    <td>{{$invoice->invoice_number}}</td>
+                                                    <td>{{$invoice->invoice_date}}</td>
+                                                    <td>{{$invoice->invoice_due_date}}</td>
+                                                    <td>{{$invoice->section->section_name}}</td>
+                                                    <td>{{$invoice->product}}</td>
+                                                    <td>{{$invoice->amount_commission}}</td>
+                                                    <td>{{$invoice->discount}}</td>
+                                                    <td>{{$invoice->tax_rate}}</td>
+                                                    <td>{{$invoice->tax_value}}</td>
+                                                    <td>{{$invoice->total}}</td>
+                                                    <td>
+                                                        @if($invoice->invoice_status == 0)
+                                                        <span class="text-danger">{{$invoice->status}}</span>
+                                                        @elseif($invoice->invoice_status == 1)
+                                                        <span class="text-success">{{$invoice->status}}</span>
+                                                        @else
+                                                        <span class="text-warning">{{$invoice->status}}</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$invoice->note}}</td>
+                                                    <td>{{$invoice->file}}</td>
                                                 </tr>
-                                               
+                                               @endforeach
                                             </tbody>
                                         </table>
                                     </div>

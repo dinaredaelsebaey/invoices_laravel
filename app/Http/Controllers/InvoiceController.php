@@ -15,7 +15,14 @@ class InvoiceController extends Controller
 {
     public function index()
     {
-        return view('invoices.index');
+        $invoices = Invoice::all();
+        $sections = Section::all();
+        $products = Product::all();
+        return view('invoices.index',[
+            'invoices' => $invoices,
+            'sections' => $sections, 
+            'products'=> $products 
+        ]);
     }
     public function create()
     {
@@ -39,6 +46,7 @@ class InvoiceController extends Controller
             'invoice_due_date' => 'required',
             'file'=>'nullable|mimes:JPG,jpg,png,pdf|max:2048',
         ]);
+        //save in invoices table
         Invoice::create([
             "invoice_number" => $request->invoice_number,
             "product" => $request->product_id,
@@ -57,6 +65,7 @@ class InvoiceController extends Controller
             "status" => 'غير مدفوعة',
             "invoice_status" => 0,
         ]);
+        //save in invoice_details table
         $invoice_id = Invoice::latest()->first()->id;
         Invoice_details::create([
             "invoice_id" => $invoice_id,
@@ -68,7 +77,7 @@ class InvoiceController extends Controller
             "status_value" => 0,
             "user" => Auth::user()->name,
         ]);
-        
+        //save in invoice_attachments table
         if($request->hasFile('file')){
             
             $invoice_id = Invoice::latest()->first()->id;
@@ -86,16 +95,13 @@ class InvoiceController extends Controller
             $invoices_attachment->invoice_id = $invoice_id;
             
             $invoices_attachment->save();
-            //put extension
             $ext=$image->getClientOriginalExtension();
             //put name to img
             $image_name=uniqid() . ".$ext";
             //move img
-            $image->move(public_path('uploads/images'),$image_name);
-         
-         
-
+            $image->move(public_path('uploads/images'.$invoice_number),$image_name);
          }
+         return back();
       
     }
 
