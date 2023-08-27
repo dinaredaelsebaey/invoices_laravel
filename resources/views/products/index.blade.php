@@ -118,32 +118,7 @@
                         </div>
                     </div>
                     {{-- edit section --}}
-                    {{-- <div class="modal" id="modaldemo12">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">تعديل قسم </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('sections.update',$section->id)}}" method="Post" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                    <div class="form-group">
-                                                                        <label for="exampleFormControlInput1" class="form-label">اسم القسم</label>
-                                                                        <input type="text" class="form-control" id="section_name" name="section_name" value="{{old('section_name') ?? $section->section_name}}">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleFormControlTextarea1" class="form-label">الوصف</label>
-                                                                        <textarea class="form-control" id="description" name="description" rows="3">{{old('section_description') ?? $section->section_description}}</textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <a class="btn ripple btn-primary" data-dismiss="modal" type="button">تعديل</a>
-                                                                    <a class="btn ripple btn-secondary" data-dismiss="modal" type="button">اغلاق</a>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                    </div> --}}
+                    
 				</div>
 				<!-- row closed -->
 			</div>

@@ -73,13 +73,14 @@
                             <select required class=" form-control" name="section_id" id="section_id">
                                     @foreach ($sections as $section)
                                         <option value={{ $section->id}}>{{ $section->section_name }}</option>
-                                    @endforeach
-                                
+                                    @endforeach   
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="product"> المنتج</label>
-                            <input type="text" id="product" class="form-control" value="" name="product">
+                            <label for="product">المنتج</label>
+                            <select required class="form-control" name="product_id" id="product_id">
+                                <!-- Product options will be dynamically populated here -->
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="amount_collection"> مبلغ التحصيل</label>
@@ -152,6 +153,33 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        // Event listener for section select element
+        $('#section_id').change(function() {
+            var sectionId = $(this).val(); // Get the selected section ID
+    
+            // Make an AJAX request to fetch the products for the selected section
+            $.ajax({
+                url: '/section/' + sectionId,
+                type: 'GET',
+                success: function(response) {
+                    // Clear previous options
+                    $('#product_id').empty();
+    
+                    // Parse the JSON response
+                    var products = JSON.parse(response);
+    
+                    // Add new options based on the response
+                    $.each(products, function(id, productName) {
+                        $('#product_id').append('<option value="' + id + '">' + productName + '</option>');
+                    });
+                }
+            });
+        });
+    });
+    </script>
 <script>
     function calcTotalTax(){
         var amount_commission = parseFloat(document.getElementById("amount_commission").value);
@@ -169,8 +197,6 @@
 
         document.getElementById("tax_value").value = sum_tax_value;
         document.getElementById("total").value = sum_total;
-
-
     }
 </script>
 @endsection

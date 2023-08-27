@@ -27,6 +27,8 @@ Auth::routes();
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
 Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
+//route to get products of section
+Route::get('/section/{id}', [InvoiceController::class, 'getProduct']);
 
 Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
 Route::post('/sections/store', [SectionController::class, 'store'])->name('sections.store');
@@ -41,6 +43,7 @@ Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('prod
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+
 
 
 
