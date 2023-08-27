@@ -115,8 +115,8 @@
                             <input type="text" id="note" class="form-control" value="" name="note">
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="image">Image Cover</label>
-                            <input type="file" class="form-control" id="image" name="cover_image">
+                            <label class="form-label" for="image">Image Or File</label>
+                            <input type="file" class="form-control" id="file" name="file">
                         </div>
                     </div>
                 </div>

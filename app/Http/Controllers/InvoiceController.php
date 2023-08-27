@@ -37,6 +37,7 @@ class InvoiceController extends Controller
             'note'=>'string|min:20|nullable',
             'invoice_date' => 'required',
             'invoice_due_date' => 'required',
+            'file'=>'nullable|mimes:JPG,jpg,png,pdf|max:2048',
         ]);
         Invoice::create([
             "invoice_number" => $request->invoice_number,
@@ -67,7 +68,35 @@ class InvoiceController extends Controller
             "status_value" => 0,
             "user" => Auth::user()->name,
         ]);
-        return view('invoices.index');
+        
+        if($request->hasFile('file')){
+            
+            $invoice_id = Invoice::latest()->first()->id;
+            
+            $invoice_number = $request->invoice_number;
+            $image=$request->file('file');
+            $file_name = $image->getClientOriginalName();
+        
+        
+            $invoices_attachment = new Invoice_attachment();
+            
+            $invoices_attachment->file_name = $file_name;
+            $invoices_attachment->invoice_number = $invoice_number;
+            $invoices_attachment->created_by = Auth::user()->name; 
+            $invoices_attachment->invoice_id = $invoice_id;
+            
+            $invoices_attachment->save();
+            //put extension
+            $ext=$image->getClientOriginalExtension();
+            //put name to img
+            $image_name=uniqid() . ".$ext";
+            //move img
+            $image->move(public_path('uploads/images'),$image_name);
+         
+         
+
+         }
+      
     }
 
     public function getProduct($id)

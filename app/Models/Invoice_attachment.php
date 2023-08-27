@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice_attachment extends Model
 {
     use HasFactory;
+    protected $guarded=[];
 }
