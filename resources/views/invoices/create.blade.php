@@ -78,7 +78,7 @@
                         </div>
                         <div class="form-group">
                             <label for="product">المنتج</label>
-                            <select required class="form-control" name="product_id" id="product_id">
+                            <select required class="form-control" name="product" id="product">
                             </select>
                         </div>
                         <div class="form-group">
@@ -175,14 +175,14 @@
                 type: 'GET',
                 success: function(response) {
                     // Clear previous options
-                    $('#product_id').empty();
+                    $('#product').empty();
                     // Parse the JSON response
                     var products = JSON.parse(response);
                     // Add new options based on the response from InvoicesController
                     //productName present response of getProduct function
-                    $.each(products, function(id, productName) {
-                        $('#product_id').append('<option value="' + id + '">' + productName + '</option>');
-                    });
+                    $.each(products, function(key, value) {
+        $('#product').append('<option value="' + value+ '">' + value+ '</option>');
+    });
                 }
             });
         });

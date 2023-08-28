@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,8 @@ Auth::routes();
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
 Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
+//Route::get('/invoices/show/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
+Route::get('/invoicesDetails/{id}', [InvoiceDetailsController::class, 'show'])->name('invoicesDetails.show');
 //route to get products of section
 Route::get('/section/{id}', [InvoiceController::class, 'getProduct']);
 

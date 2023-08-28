@@ -65,7 +65,9 @@
                                                     <td>{{$invoice->invoice_number}}</td>
                                                     <td>{{$invoice->invoice_date}}</td>
                                                     <td>{{$invoice->invoice_due_date}}</td>
-                                                    <td>{{$invoice->section->section_name}}</td>
+                                                    <td>
+                                                        <a href="{{route('invoicesDetails.show',$invoice->section_id)}}">{{$invoice->section->section_name}}</a>
+                                                    </td>
                                                     <td>{{$invoice->product}}</td>
                                                     <td>{{$invoice->amount_commission}}</td>
                                                     <td>{{$invoice->discount}}</td>

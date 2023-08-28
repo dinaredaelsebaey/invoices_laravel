@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice_details;
+use App\Models\Invoice;
+use App\Models\Section;
+
+use App\Models\Product;
+use App\Models\Invoice_attachment;
 use Illuminate\Http\Request;
 
-class InvoicesDetailsController extends Controller
+class InvoiceDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $invoices_details = Invoice_details::all();
+        $invoices = Invoice::all();
+        return view('invoicesDetails.show',[
+            'invoices_details' => $invoices_details,
+            'invoices' => $invoices,
+        ]);
     }
 
     /**
@@ -34,9 +44,17 @@ class InvoicesDetailsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Invoice_details $invoices_details)
+    public function show(Invoice_details $invoices_details,$id)
     {
-        //
+        $invoices = Invoice::where('id',$id)->first();
+        $invoices_details = Invoice_details::where('invoice_id',$id)->get();
+        $invoices_attachment = Invoice_attachment::where('invoice_id',$id)->get();
+        return view('invoicesDetails.show',[
+            'invoices_details' => $invoices_details,
+            'invoices' => $invoices,
+            'invoices_attachment' => $invoices_attachment,
+        ]);
+        
     }
 
     /**
