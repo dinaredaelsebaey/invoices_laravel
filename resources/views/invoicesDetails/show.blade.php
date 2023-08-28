@@ -32,10 +32,7 @@
                         <!--div-->
                         <div class="col-xl-12">
                             <div class="card mg-b-20">
-                                <div class="card-header pb-0">
-                                    <div class="d-flex justify-content-between">
-                                       
-                                    </div>
+                                <div class="card-header pb-0"> 
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -46,11 +43,11 @@
                                                 <p class="my-3">القسم : {{$invoices->section->section_name}}</p> 
                                                 <p class="my-3">الحالة :
                                                     @if($invoices->invoice_status == 0)
-                                                    <p><span class="text-danger">{{$invoices->invoice_status}}</span></p>
+                                                        <p><span class="text-danger">{{$invoices->invoice_status}}</span></p>
                                                     @elseif($invoice->status_value == 1)
-                                                    <p><span class="text-success">{{$invoices->invoice_status}}</span></p>
+                                                        <p><span class="text-success">{{$invoices->invoice_status}}</span></p>
                                                     @else
-                                                    <p><span class="text-warning">{{$invoices->invoice_status}}</span></p>
+                                                        <p><span class="text-warning">{{$invoices->invoice_status}}</span></p>
                                                     @endif
                                                 </p>
                                                 <p class="my-3">ملاحظات :{{$invoices->notes}}</p>
@@ -60,34 +57,47 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="table-responsive">
-                                        <table id="example1" class="table key-buttons text-md-nowrap">
-                                            <tbody>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-outline-primary ">تفاصيل الفاتوره</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="example1" class="table key-buttons text-md-nowrap">
+                                            <thead>
                                                 <tr>
-                                                    <th scope="row">رقم الفاتورة</th>
-                                                    <td>{{$invoices->invoice_number}}</td>
-                                                    <th scope="row">القسم</th>
-                                                    <td>
-                                                        {{$invoices->section->section_name}}
-                                                    </td>
-                                                    <th scope="row">المنتج</th>
-                                                    <td>{{$invoices->product}}</td>
-                                                    <th scope="row">الحالة</th>
-                                                    @if($invoices->invoice_status == 0)
-                                                    <td><span class="text-danger">{{$invoices->invoice_status}}</span></td>
-                                                    @elseif($invoice->status_value == 1)
-                                                    <td><span class="text-success">{{$invoices->invoice_status}}</span></td>
-                                                    @else
-                                                    <td><span class="text-warning">{{$invoices->invoice_status}}</span></td>
-                                                    @endif
-                                                    <th scope="row">ملاحظات</th> 
-                                                    <td>{{$invoices->notes}}</td>
-                                                    <th scope="row">المستخدم</th> 
-                                                    <td>{{$invoices->user}}</td>
-                                            
+                                                    <th class="border-bottom-0">#</th>
+                                                    <th class="border-bottom-0">رقم الفاتورة</th>
+                                                    <th class="border-bottom-0">القسم</th>
+                                                    <th class="border-bottom-0">المنتج</th>
+                                                    <th class="border-bottom-0">الحالة</th>
+                                                    <th class="border-bottom-0">تاريخ الدفع</th>
+                                                    <th class="border-bottom-0">تاريخ الاضافة</th>
+                                                    <th class="border-bottom-0">ملاحظات</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($invoices_details as $invoice_details)
+                                                <tr>
+                                                    <td>{{$invoice_details->id}}</td>
+                                                    <td>{{$invoice_details->invoice_number}}</td>
+                                                    <td>{{$invoices->section->section_name}}</td>
+                                                    <td>{{$invoice_details->product}}</td>
+                                                    
+                                                        @if($invoice_details->invoice_status == 0)
+                                                        <td><span class="text-danger">{{$invoice_details->status}}</span></td>
+                                                        @elseif($invoice_details->invoice_status == 1)
+                                                        <td><span class="text-success">{{$invoice_details->status}}</span></td>
+                                                        @else
+                                                        <td><span class="text-warning">{{$invoice_details->status}}</span></td>
+                                                        @endif
+                                                    
+                                                    <td>{{$invoice_details->payment_date}}</td>
+                                                    <td>{{$invoice_details->created_at}}</td>
+                                                    <td>{{$invoice_details->note}}</td>
+                                                </tr>
+                                               @endforeach
+                                            </tbody>
                                         </table>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
