@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Requests\StoreSectionRequest;
 use App\Models\Section;
 use Illuminate\Http\Request;
 

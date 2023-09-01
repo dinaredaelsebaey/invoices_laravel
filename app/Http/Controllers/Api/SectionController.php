@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Section;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Requests\StoreSectionRequest;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -35,11 +36,13 @@ class SectionController extends Controller
             $description=$request->description;
             $created_by=Auth::user()->name;
          
-         return Section::create([
+            return Section::create([
             'section_name'=>$section_name,
             'description'=>$description,
             'created_by'=>$created_by,
             
          ]);
+         
     }
+    
 }
