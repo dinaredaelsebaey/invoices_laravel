@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Invoice_details;
-use App\Models\Invoice_attachment;
+use App\Models\Invoice_attachments;
 use App\Models\Product;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -86,7 +86,7 @@ class InvoiceController extends Controller
         $image = $request->file('file');
         $file_name = $image->getClientOriginalName();
 
-        $invoices_attachment = new Invoice_attachment();
+        $invoices_attachment = new Invoice_attachments();
 
         $invoices_attachment->file_name = $file_name;
         $invoices_attachment->invoice_number = $invoice_number;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('sections',[SectionController::class , 'index']);
+Route::get('section/show/{id}', [SectionController::class , 'show']);
+Route::post('sections/store', [SectionController::class, 'store']);

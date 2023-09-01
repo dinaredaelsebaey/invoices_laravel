@@ -7,7 +7,7 @@ use App\Models\Invoice;
 use App\Models\Section;
 
 use App\Models\Product;
-use App\Models\Invoice_attachment;
+use App\Models\Invoice_attachments;
 use Illuminate\Http\Request;
 
 class InvoiceDetailsController extends Controller
@@ -47,11 +47,10 @@ class InvoiceDetailsController extends Controller
     public function show(Invoice_details $invoices_details,$id)
     {
         $invoices = Invoice::where('id',$id)->first();
-       //dd($id);
         $invoices_details = Invoice_details::where('invoice_id',$id)->get();
-
-        $invoices_attachment = Invoice_attachment::where('invoice_id',$id)->get();
+        $invoices_attachment = Invoice_attachments::where('invoice_id',$id)->get();
         //dd($invoices_details);
+        dd($invoices_attachment);
         return view('invoicesDetails.show',[
             'invoices_details' => $invoices_details,
             'invoices' => $invoices,
