@@ -17,7 +17,7 @@ class SectionController extends Controller
     public function show($id)
     {
         $section = Section::findOrFail($id);
-        return $section ; 
+        return $section ;
  
     }
     public function store(Request $request)

@@ -50,7 +50,7 @@ class InvoiceDetailsController extends Controller
         $invoices_details = Invoice_details::where('invoice_id',$id)->get();
         $invoices_attachment = Invoice_attachments::where('invoice_id',$id)->get();
         //dd($invoices_details);
-        dd($invoices_attachment);
+        //dd($invoices_attachment);
         return view('invoicesDetails.show',[
             'invoices_details' => $invoices_details,
             'invoices' => $invoices,

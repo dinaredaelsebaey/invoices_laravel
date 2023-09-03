@@ -55,6 +55,7 @@
                                                     <th class="border-bottom-0">الاجمالي</th>
                                                     <th class="border-bottom-0">الحالة</th>
                                                     <th class="border-bottom-0">ملاحظات</th> 
+                                                    <th class="border-bottom-0">operations</th> 
                                             
                                                 </tr>
                                             </thead>
@@ -85,6 +86,12 @@
                                                     </td>
                                                     <td>{{$invoice->note}}</td>
                                                     <td>{{$invoice->file}}</td>
+                                                    <td>
+                                                        <a href="{{route('invoices.show',$invoice->id)}}">Show</a>
+                                                        <a href="#">Update</a>
+                                                        <a href="#">Delete</a>
+
+                                                    </td>
                                                 </tr>
                                                @endforeach
                                             </tbody>

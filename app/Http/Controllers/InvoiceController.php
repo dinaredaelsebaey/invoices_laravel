@@ -104,14 +104,16 @@ class InvoiceController extends Controller
 
 public function show(Invoice $invoice,$id)
 {
-    $invoice = Invoice::findOrFail($id);
-    $section = Section::findOrFail($id);
-    $product = Product::findOrFail($id);
-    return view('invoices.show',[
+    $invoice = Invoice::where('id',$id)->first();
+    return view('invoices.status_update',[
         'invoice' => $invoice,
-        'product' => $product,
-        'section' => $section,
     ]);
+   
+}
+public function status_update(Request $request, $id)
+{
+    return $request ;
+    
 }
 
     public function getProduct($id)
