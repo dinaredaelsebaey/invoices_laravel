@@ -87,7 +87,7 @@
                                                     <td>{{$invoice->note}}</td>
                                                     <td>{{$invoice->file}}</td>
                                                     <td>
-                                                        <a href="{{route('invoices.show',$invoice->id)}}">Show</a>
+                                                        <a href="{{route('invoices.show',$invoice->id)}}">Change Status</a>
                                                         <a href="#">Update</a>
                                                         <a href="#">Delete</a>
 

@@ -112,7 +112,48 @@ public function show(Invoice $invoice,$id)
 }
 public function status_update(Request $request, $id)
 {
-    return $request ;
+    $invoice = Invoice::findOrFail($id);
+    if($invoice -> status === "مدفوعة" )
+    {
+        $invoice->update([
+            'invoice_status' => 1,
+            'status' => $request->status,
+            'payment_date' => $request->payment_date, 
+            
+        ]);
+        Invoice_details::create([
+            "invoice_id" => $request->id,
+            "invoice_number" => $request->invoice_number,
+            "product" => $request->product, // Save the product name instead of the ID
+            "section" => $request->section_id,
+            "notes" => $request->notes,
+            "status" => $request->status,
+            "payment_date" => $request->payment_date,
+            "status_value" => 1,
+            "user" => Auth::user()->name,
+        ]);
+    }else
+    {
+        $invoice->update([
+            'invoice_status' => 2,
+            'status' => $request->status,
+            'payment_date' => $request->payment_date, 
+            
+        ]);
+        Invoice_details::create([
+            "invoice_id" => $request->id,
+            "invoice_number" => $request->invoice_number,
+            "product" => $request->product, // Save the product name instead of the ID
+            "section" => $request->section_id,
+            "notes" => $request->notes,
+            "status" => $request->status,
+            "payment_date" => $request->payment_date,
+            "status_value" => 2,
+            "user" => Auth::user()->name,
+        ]);
+        
+    }
+    return redirect('/invoices');
     
 }
 
