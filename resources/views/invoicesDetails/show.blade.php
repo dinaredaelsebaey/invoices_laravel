@@ -42,12 +42,12 @@
                                                 <p class="my-3">المنتج : {{$invoices->product}}</p>
                                                 <p class="my-3">القسم : {{$invoices->section->section_name}}</p> 
                                                 <p class="my-3">الحالة :
-                                                    @if($invoices->invoice_status == 0)
-                                                        <p><span class="text-danger">{{$invoices->invoice_status}}</span></p>
-                                                    @elseif($invoice->status_value == 1)
-                                                        <p><span class="text-success">{{$invoices->invoice_status}}</span></p>
+                                                    @if($invoices->status_value == 0)
+                                                        <p><span class="text-danger">{{$invoices->status}}</span></p>
+                                                    @elseif($invoices->invoice_status == 1)
+                                                        <p><span class="text-success">{{$invoices->status}}</span></p>
                                                     @else
-                                                        <p><span class="text-warning">{{$invoices->invoice_status}}</span></p>
+                                                        <p><span class="text-warning">{{$invoices->status}}</span></p>
                                                     @endif
                                                 </p>
                                                 <p class="my-3">ملاحظات :{{$invoices->notes}}</p>
@@ -83,9 +83,9 @@
                                                     <td>{{$invoices->section->section_name}}</td>
                                                     <td>{{$invoice_details->product}}</td>
                                                     
-                                                        @if($invoice_details->invoice_status == 0)
+                                                        @if($invoice_details->status_value == 0)
                                                         <td><span class="text-danger">{{$invoice_details->status}}</span></td>
-                                                        @elseif($invoice_details->invoice_status == 1)
+                                                        @elseif($invoice_details->status_value == 1)
                                                         <td><span class="text-success">{{$invoice_details->status}}</span></td>
                                                         @else
                                                         <td><span class="text-warning">{{$invoice_details->status}}</span></td>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Invoice_details;
 use App\Models\Invoice;
 use App\Models\Section;
-
 use App\Models\Product;
 use App\Models\Invoice_attachments;
 use Illuminate\Http\Request;

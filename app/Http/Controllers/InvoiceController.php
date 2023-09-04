@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class InvoiceController extends Controller
 {
     public function index()
@@ -155,6 +156,31 @@ public function status_update(Request $request, $id)
     }
     return redirect('/invoices');
     
+}
+public function invoice_paied(Request $request)
+{
+    
+    $invoices = Invoice::where('invoice_status',1)->get();
+    return view('invoices.paied',[
+        'invoices' => $invoices,
+    ]);
+
+}
+public function invoice_unPaied(Request $request)
+{
+    
+    $invoices = Invoice::where('invoice_status',0)->get();
+    return view('invoices.unPaied',[
+        'invoices' => $invoices,
+    ]);
+}
+    public function invoice_partial(Request $request)
+{
+    
+    $invoices = Invoice::where('invoice_status',2)->get();
+    return view('invoices.partial',[
+        'invoices' => $invoices,
+    ]);
 }
 
     public function getProduct($id)
